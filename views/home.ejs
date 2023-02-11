@@ -3,4 +3,11 @@
 <h1>Home</h1>
 <p><%= homePageInfo %></p>
 
+<div class="" id="blogPosts">
+    <% posts.forEach(post => { %>
+         <h2><%= post.blog_title %> </h2>
+         <p><%= post.blog_post.substring(0,100) + " ..." %><a href="<%= 'posts/'+post.blog_URL %>">Read More</a> </p>
+    <% }) %>
+</div>
+
 <%- include('partials/footer'); -%> 
