@@ -1,3 +1,4 @@
 #Node Module files ignored for commit
 node_modules/
+#Adding the .env file to ignore for git commit
 .env
