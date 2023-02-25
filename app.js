@@ -31,6 +31,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
+const mongoDB = 'mongodb+srv://'+dbUser+':'+dbPasswd+'@'+srvURL+'/'+dbName+'?retryWrites=true&w=majority';
+
+main().catch(err => console.log(err));
+async function main() {
+    //await mongoose.connect('mongodb://127.0.0.1:27017/test');
+    try {
+      await mongoose.connect(mongoDB);  //if your database has auth enabled  
+    } catch (error) {
+      console.log(error);
+    }    
+}
+
+
 app.get('/', (req, res) => {
   res.render('home',{homePageInfo: homeStartingContent,posts: blogs});
   //console.log("The JSON blog post is --> "+JSON.stringify(blogs));
