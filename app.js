@@ -94,14 +94,22 @@ app.post('/compose',(req, res) => {
   blogPost = req.body.blogPostText;
   blogURL = _.kebabCase(req.body.blogTitleText);
   
-  const blog = {
+  /*   const blog = {
       blog_title: blogTitle,
       blog_post: blogPost,
       blog_URL: blogURL
-  };
-  
-  blogs.push(blog);
+  }; */
 
+  //blogs.push(blog);
+
+  const blog = new Blog({
+    title: blogTitle,
+    content: blogPost,
+    url: blogURL
+  });
+  
+  blog.save();
+  
   res.redirect("/");
   
 })
