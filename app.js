@@ -43,6 +43,19 @@ async function main() {
     }    
 }
 
+const blogsSchema = new mongoose.Schema({
+        title: {
+          type: String,
+          required: [true, 'Can\'t have blog without title']
+        },
+        content: {
+          type: String,
+          required: [true, 'No blog without Content']
+        }
+  });
+
+const Blog = mongoose.model("Blog", blogsSchema);
+
 
 app.get('/', (req, res) => {
   res.render('home',{homePageInfo: homeStartingContent,posts: blogs});
