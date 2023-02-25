@@ -51,6 +51,9 @@ const blogsSchema = new mongoose.Schema({
         content: {
           type: String,
           required: [true, 'No blog without Content']
+        },
+        url: {
+          type: String
         }
   });
 
