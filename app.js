@@ -4,6 +4,16 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+//Setting up MongoDB COnnections and it's values through process envirnment variables. 
+const srvURL = process.env.N1_URL;
+const dbUser = process.env.N1_KEY;
+const dbPasswd = process.env.N1_SECRET;
+const dbName = process.env.N1_DB;
+
+mongoose.set("strictQuery", false);
 
 const blogs = [];
 
