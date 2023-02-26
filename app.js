@@ -61,7 +61,22 @@ const Blog = mongoose.model("Blog", blogsSchema);
 
 
 app.get('/', (req, res) => {
-  res.render('home',{homePageInfo: homeStartingContent,posts: blogs});
+
+    Blog.find({},(err, foundBlogs)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        if (foundBlogs.length === 0){
+          res.redirect("/compose");
+        }
+        else{
+          res.render('home',{homePageInfo: homeStartingContent,posts: foundBlogs});
+        }
+      }
+    });
+
+  
   //console.log("The JSON blog post is --> "+JSON.stringify(blogs));
 })
 
@@ -113,13 +128,6 @@ app.post('/compose',(req, res) => {
   res.redirect("/");
   
 })
-
-
-
-
-
-
-
 
 app.listen(port, function() {
   console.log("Hasmukh's Blog App Server started on port "+port);
