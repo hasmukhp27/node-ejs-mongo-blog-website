@@ -95,13 +95,21 @@ app.get('/compose', (req, res) => {
 })
 
 app.get('/posts/:postId', (req, res)=>{
-  const paramPostId = _.lowerCase(req.params.postId);
-  blogs.forEach(function(post){
+  //const paramPostId = _.lowerCase(req.params.postId);
+  
+  /* blogs.forEach(function(post){
     var selectedPostTitle = _.lowerCase(post.blog_title);
     if ( selectedPostTitle === paramPostId ){
       res.render('post',{blogPostTitle: post.blog_title,blogPostContent: post.blog_post});
     }    
-  })    
+  })  */
+  const paramPostId = req.params.postId;
+
+  Blog.findOne({url: paramPostId}, (err, foundElement)=>{
+      console.log("Found element ->"+foundElement+" for paramId =>"+paramPostId);
+      res.render('post',{blogPostTitle: foundElement.title,blogPostContent: foundElement.content});
+  });
+
 })
 
 app.post('/compose',(req, res) => {
