@@ -131,10 +131,12 @@ app.post('/compose',(req, res) => {
     url: blogURL
   });
   
-  blog.save();
-  
-  res.redirect("/");
-  
+  blog.save((err)=>{
+    if(!err){
+      res.redirect("/");
+    }      
+  });
+    
 })
 
 app.listen(port, function() {
