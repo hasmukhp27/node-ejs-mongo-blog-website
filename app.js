@@ -62,7 +62,7 @@ const Blog = mongoose.model("Blog", blogsSchema);
 
 app.get('/', (req, res) => {
 
-    Blog.find({},(err, foundBlogs)=>{
+    Blog.find({},null,{sort: {title: 1}},(err, foundBlogs)=>{
       if(err){
         console.log(err);
       }
